@@ -1,0 +1,213 @@
+mysql:
+  enabled: false
+  host: "127.0.0.1"
+  port: "3306"
+  database: "db"
+  username: "root"
+  password: ""
+
+# settings
+settings:
+  token: "" #-> JDA Token
+  activity: "mc.diamondcrew.cz" #-> Bot activity, will be visible.
+  guild-id: 632926023637401630 #-> ID of the Guild, the bot is in.
+  admin-role: 752802374979944518 #-> Admin Role ID
+
+# ticket settings
+tickets:
+  open-category: 752811718379307092 # ID of the category for opened tickets.
+  closed-category: 752811673466699810 # ID of the category, where tickets will be moved after closing.
+  create-channel: 752813323573002290 #-> ID of the channel, where users can create tickets.
+  create-reaction: "❓" #-> Reaction users need to add, to create a ticket.
+  open-embed: #-> Embed, that will be send, after opening a ticket.
+    title: "Podpora"
+    description: "Ticket otevřen, nyní zde prosím popiš svůj problém."
+    fields:
+      - name: "Podpora tu bude co nevidět."
+        value: "Pro uzavření, klikni na 🔒"
+  open-message: #-> List of messages, that will be sent, after opening a ticket in-game.
+    - "§8╔════════ §aTICKET §8════════╗"
+    - "§8║"
+    - "§8╠═§b§l {userName}"
+    - "§8║ §f{url}"
+    - "§8║"
+    - "§8╚════════ §aTICKET §8════════╝"
+  close-emote: "🔒"
+
+# roles
+roles:
+  PREMIUM:
+    perm: "discord.group.premium"
+    role: 752814579507134505
+  YOUTUBE:
+    perm: "discord.group.youtube"
+    role: 712386306839150642
+  TWITCH:
+    perm: "discord.group.twitch"
+    role: 782269399938891787
+  TESTER:
+    perm: "discord.group.tester"
+    role: 649628473845088293
+  BUILD:
+    perm: "discord.group.build"
+    role: 642097528510218270
+  MOD:
+    perm: "discord.group.mod"
+    role: 642097646735065109
+  ADMIN:
+    perm: "discord.group.admin"
+    role: 642098109857529866
+  DEV:
+    perm: "discord.group.dev"
+    role: 642097433488392227
+  HEADMOD:
+    perm: "discord.group.headmod"
+    role: 698966784283246592
+  HEADBUILD:
+    perm: "discord.group.headbuild"
+    role: 642097815551475739
+  HEADADMIN:
+    perm: "discord.group.headbuild"
+    role: 698967921539547166
+  DISCORD_ADMIN:
+    perm: "discord.admin"
+    role: 752802374979944518
+
+# react for role
+react:
+  confirm:
+    channel: 752812808034582549
+    emote: "ALL"
+    role: 752842207031197746
+  frakce:
+    channel: 752813365771894804
+    emote: "1️⃣"
+    role: 752815962335739952
+  uhc:
+    channel: 752813365771894804
+    emote: "2️⃣"
+    role: 755201759579865129
+  bedwars:
+    channel: 752813365771894804
+    emote: "3️⃣"
+    role: 773544187470938112
+  buildbattle:
+    channel: 752813365771894804
+    emote: "4️⃣"
+    role: 781056260920311809
+
+# simple commands
+simple-commands:
+  banlist:
+    aliases: ["ban", "bans", "zabanovani"]
+    embed:
+      title: "Seznam Zabanovaných"
+      description: "https://mc.diamondcrew.cz/bans"
+  discord:
+    aliases: ["link", "invite"]
+    embed:
+      title: "Discord Pozvánka"
+      description: "https://mc.diamondcrew.cz/discord"
+  info:
+    aliases: ["help", "pomoc"]
+    embed:
+      title: "Nápověda"
+      description: "Základní pomůcka pro hráče DiamondCrewMC."
+      fields:
+        1:
+          name: "Webová Stránka"
+          value: "http://mc.diamondcrew.cz"
+        2:
+          name: "Obchod"
+          value: "http://store.diamondcrew.cz"
+        3:
+          name: "Discord Link"
+          value: "http://mc.diamondcrew.cz/discord"
+        4:
+          name: "Wiki"
+          value: "http://wiki.diamondcrew.cz"
+        empty1: []
+        5:
+          name: "Nábor"
+          value: "Máte-li zájem stát se členem/kou našeho týmu, vytvořte si ticket v místnosti #❓podpora"
+        6:
+          name: "Minecraft Server"
+          value: "`play.diamondcrew.cz` | `mc.diamondcrew.cz`"
+        7:
+          name: "TeamSpeak 3 Server"
+          value: "`play.diamondcrew.cz`"
+        8:
+          name: "Našli jte chybu, nebo máte jiný druh problému?"
+          value: "Obrtaťte se do místnosti #❓podpora a vytvořte si ticket."
+        9:
+          name: "Chcete dostávat informace o vývoji jednotlivých serverů a zapojit se do komunitních akcí?"
+          value: "Přejděte do místnosti #🙋role a vyberte si servery, které Vás zajímají."
+    ip:
+      aliases: ["serverip", "ipserver"]
+      embed:
+        title: "IP Adresa (MC & TS3)"
+        description: "play.diamondcrew.cz"
+    rules:
+      aliases: ["pravidla"]
+      embed:
+        title: "Pravidla"
+        description: "http://wiki.diamondcrew.cz"
+    store:
+      aliases: ["shop", "obchod", "premium", "vip"]
+      embed:
+        title: "Obchod"
+        description: "http://store.diamondcrew.cz"
+    webpage:
+      aliases: ["web", "website", "stranka", "stranky"]
+      embed:
+        title: "Webová Stránka"
+        description: "http://mc.diamondcrew.cz"
+    youtube:
+      aliases: ["yt", "twitch", "stream"]
+      embed:
+        title: "YouTube/Twitch Program"
+        description: "Informace o partnerském YouTube/Twitch programu."
+        fields:
+          1:
+            name: "Podmínky"
+            value: "> Podmínky pro přijetí do našeho programu jsou velmi stručné a jasné.
+                    - Aktivně vydávat/streamovat obsah, související s Minecraftem na Vašem kanále.
+                    - Streamovat alespoň jednou z *DCMC* serverů, v určené době.
+                    - Streamovaný obsah z našich serverů, nesmí porušovat žádné z jeho pravidel."
+          2:
+            name: "Co můžeme nabídnout"
+            value: "> Vaše benefity, ze zapojení v našem programu, nejsou absolutní, aktivně se snažíme přidávat více.
+                    > Zaroveń je možnost speciálních benefitů na Vaši osobu, po domluvě.
+                    - Herní **YT/Twitch** hodnost, na všech serverech, obsahující všechny(+bonusové) výhody *Premium* hodnosti.
+                    - Váš kanál bude přidán do seznamu na webu a všech hlavních herních lobby.
+                    - Po bližší dohodě můžeme nabídnou vlastní *Minecraft Server* pro Vás a Vaše publikum."
+        footer:
+          name: "V případě zájmu o vstoupení do výše uvedeného programu a splnění požadavků, věříme že se oboum stranám otevře spousta příležitostí k prosperování z krátkodobého i dlouhodobého hlediska a budeme se těšit na vzájemnou spolupráci."
+    ytserver:
+      aliases: ["vlastniserver"]
+      embed:
+        title: "Vlastní Minecraft Server"
+        description: "Informace o vlastním Minecraft Serveru."
+        fields:
+          1:
+            name: "Vlastní Minecraft Server"
+            value: "> Pokud si zažádáte o vlastní server pro Vaše sledující a Vaše žádost bude schválena, budete mít přístup k těmto benefitům.
+                    *Prvotní nastavení serveru*
+                    - Možnost výběru verze od **1.8.x** a výše.
+                    - Možnost změny všech nastavení serveru, kromě `online-mode`. (Vždy `false`)"
+          2:
+            name: "Přenesené výhody, při připojení k našemu networku"
+            value: "- Automatické přihlášení pro originální uživatele.
+                    - Automatické přihlášení po zvolenou dobu pro ne-origionální uživatele.
+                    - V připadě změny nicku originálního uživatele, všechny data budou automaticky přeneseny.
+                    - DDoS, Bot a Spoof ochrana."
+          3:
+            name: "Ostatní benefity serveru"
+            value: "- Server bude z Vaší strany zcela zdarma
+                    - Na server se budete moci připojit z hlavních herních lobby.
+                    - Možnost nastavení vCPU a RAM, podle bližší dohody.
+                    - O server se bude starat náš tým profesionálních vývojářů, s dlouholetými zkušenostmi.
+                    - V případě potřeby na server budou přídány pluginy, dle Vašich představ a požadavků, zároveň je možnost vytvoření vlastních.
+                    - Budete mít kompletní přístup k základním funkcím serveru, v prostředí moderního panelu."
+
+

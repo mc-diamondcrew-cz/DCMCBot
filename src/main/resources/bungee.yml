@@ -1,0 +1,6 @@
+name: DCMCBot
+version: 1.0
+author: 9hx
+main: me.pljr.dcmcbot.DCMCBot
+depends: [PLJRApi-Bungee]
+description: Bot for DiamondCrewMC Discord.
