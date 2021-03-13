@@ -2,7 +2,7 @@ package me.pljr.dcmcbot.config;
 
 import me.pljr.dcmcbot.DCMCBot;
 import me.pljr.dcmcbot.utils.EmbedUtils;
-import me.pljr.pljrapibungee.managers.ConfigManager;
+import me.pljr.pljrapibungee.config.ConfigManager;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Category;
 import net.dv8tion.jda.api.entities.Guild;

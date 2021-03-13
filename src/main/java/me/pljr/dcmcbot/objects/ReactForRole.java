@@ -29,8 +29,10 @@ public class ReactForRole extends ListenerAdapter {
         TextChannel channel = event.getTextChannel();
         if (this.channel != channel) return;
 
-        MessageReaction.ReactionEmote emote = event.getReactionEmote();
-        if (this.emote != emote) return;
+        if (this.emote != null){
+            MessageReaction.ReactionEmote emote = event.getReactionEmote();
+            if (!this.emote.equals(emote)) return;
+        }
 
         if (event instanceof MessageReactionAddEvent){
             member.getGuild().addRoleToMember(member, this.role).queue();

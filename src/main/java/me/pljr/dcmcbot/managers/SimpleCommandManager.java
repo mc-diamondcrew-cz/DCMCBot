@@ -2,14 +2,14 @@ package me.pljr.dcmcbot.managers;
 
 import me.pljr.dcmcbot.objects.SimpleCommand;
 import me.pljr.dcmcbot.utils.EmbedUtils;
-import me.pljr.pljrapibungee.managers.ConfigManager;
+import me.pljr.pljrapibungee.config.ConfigManager;
 import net.md_5.bungee.config.Configuration;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SimpleCommandManager {
-    private List<SimpleCommand> commands;
+    private final List<SimpleCommand> commands;
 
     public SimpleCommandManager(ConfigManager config){
         this.commands = new ArrayList<>();

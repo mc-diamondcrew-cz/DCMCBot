@@ -2,18 +2,20 @@ package me.pljr.dcmcbot;
 
 import me.pljr.dcmcbot.commands.bungeecord.DiscordCommand;
 import me.pljr.dcmcbot.commands.bungeecord.TicketCommand;
+import me.pljr.dcmcbot.commands.bungeecord.VoteCommand;
 import me.pljr.dcmcbot.commands.discord.ClearCommand;
 import me.pljr.dcmcbot.commands.discord.LinkAccountCommand;
 import me.pljr.dcmcbot.commands.discord.SayCommand;
 import me.pljr.dcmcbot.config.CfgSettings;
 import me.pljr.dcmcbot.config.CfgTickets;
+import me.pljr.dcmcbot.listeners.bungeecord.PreLoginListener;
 import me.pljr.dcmcbot.listeners.discord.GuildJoinListener;
 import me.pljr.dcmcbot.listeners.discord.GuildLeaveListener;
 import me.pljr.dcmcbot.managers.*;
 import me.pljr.dcmcbot.objects.ReactForRole;
 import me.pljr.dcmcbot.objects.SimpleCommand;
-import me.pljr.pljrapibungee.database.DataSource;
-import me.pljr.pljrapibungee.managers.ConfigManager;
+import me.pljr.pljrapibungee.PLJRApiBungee;
+import me.pljr.pljrapibungee.config.ConfigManager;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
@@ -23,20 +25,16 @@ import net.dv8tion.jda.api.utils.ChunkingFilter;
 import net.dv8tion.jda.api.utils.MemberCachePolicy;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
 import net.md_5.bungee.api.plugin.Plugin;
-import net.md_5.bungee.config.Configuration;
-import net.md_5.bungee.config.ConfigurationProvider;
-import net.md_5.bungee.config.YamlConfiguration;
+import net.md_5.bungee.api.plugin.PluginManager;
 
 import javax.security.auth.login.LoginException;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
 
 public class DCMCBot extends Plugin {
     private static DCMCBot instance;
     private static JDA jda;
     private static Guild guild;
+
+    private static PLJRApiBungee pljrApiBungee;
 
     private static ConfigManager configManager;
     private static QueryManager queryManager;
@@ -50,39 +48,31 @@ public class DCMCBot extends Plugin {
 
     @Override
     public void onEnable(){
+        if (!setupPLJRApi()) return;
         instance = this;
-        if (!setupMainConfig()) return;
-        if (!setupJDA()) return;
+        setupMainConfig();
+        setupJDA();
     }
 
-    public boolean setupMainConfig() {
-        if (!getDataFolder().exists()) getDataFolder().mkdir();
-
-        File file = new File(getDataFolder(), "config.yml");
-
-        if (!file.exists()) {
-            try (InputStream in = getResourceAsStream("config.yml")) {
-                Files.copy(in, file.toPath());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+    public boolean setupPLJRApi(){
+        if (PLJRApiBungee.get() == null){
+            getLogger().warning("PLJRApi-Bungee is not enabled!");
+            return false;
         }
-        try {
-            Configuration configuration = ConfigurationProvider.getProvider(YamlConfiguration.class).load(new File(getDataFolder(), "config.yml"));
-            configManager = new ConfigManager(configuration, "§cDCMCBot:", "config.yml");
-            CfgSettings.load(configManager);
-            return true;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return false;
+        pljrApiBungee = PLJRApiBungee.get();
+        return true;
+    }
+
+    public void setupMainConfig() {
+        configManager = new ConfigManager(this, "config.yml", true);
+        CfgSettings.load(configManager);
     }
 
     public void setupConfigs(){
         CfgTickets.load(configManager);
     }
 
-    public boolean setupJDA(){
+    public void setupJDA(){
         try {
             jda = JDABuilder.createDefault(CfgSettings.token)
                     .setChunkingFilter(ChunkingFilter.ALL)
@@ -92,15 +82,14 @@ public class DCMCBot extends Plugin {
                     .build();
         } catch (LoginException e) {
             e.printStackTrace();
-            return false;
+            return;
         }
         jda.getPresence().setActivity(Activity.playing(CfgSettings.activity));
         jda.addEventListener(new JDAReadyListener(this));
-        return true;
     }
 
     public void setupDatabase(){
-        queryManager = new QueryManager(DataSource.getFromConfig(configManager), guild);
+        queryManager = new QueryManager(pljrApiBungee.getDataSource(configManager), guild);
     }
 
     public void setupManagers(){
@@ -116,6 +105,7 @@ public class DCMCBot extends Plugin {
         // Bungee
         new DiscordCommand().registerCommand(this);
         new TicketCommand().registerCommand(this);
+        new VoteCommand(configManager).registerCommand(this);
 
         // Discord
         new ClearCommand("clear", guild.getRoleById(CfgSettings.adminRole)).registerCommand(jda);
@@ -129,6 +119,8 @@ public class DCMCBot extends Plugin {
 
     public void setupListeners(){
         // Bungee
+        PluginManager pluginManager = getProxy().getPluginManager();
+        pluginManager.registerListener(this, new PreLoginListener(statsManager));
 
         // Discord
         jda.addEventListener(ticketManager);

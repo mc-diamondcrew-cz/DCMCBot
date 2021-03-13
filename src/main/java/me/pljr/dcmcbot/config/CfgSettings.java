@@ -1,6 +1,7 @@
 package me.pljr.dcmcbot.config;
 
-import me.pljr.pljrapibungee.managers.ConfigManager;
+
+import me.pljr.pljrapibungee.config.ConfigManager;
 
 public class CfgSettings {
     public static String token;

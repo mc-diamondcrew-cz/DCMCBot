@@ -2,7 +2,7 @@ package me.pljr.dcmcbot.managers;
 
 import me.pljr.dcmcbot.DCMCBot;
 import me.pljr.dcmcbot.objects.DCRole;
-import me.pljr.pljrapibungee.managers.ConfigManager;
+import me.pljr.pljrapibungee.config.ConfigManager;
 import net.dv8tion.jda.api.entities.Guild;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.PostLoginEvent;

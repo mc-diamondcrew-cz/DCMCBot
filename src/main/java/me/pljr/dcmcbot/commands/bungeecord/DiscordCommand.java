@@ -2,7 +2,7 @@ package me.pljr.dcmcbot.commands.bungeecord;
 
 import me.pljr.dcmcbot.DCMCBot;
 import me.pljr.dcmcbot.managers.DCAccountManager;
-import me.pljr.pljrapibungee.utils.CommandUtil;
+import me.pljr.pljrapibungee.commands.BungeeCommand;
 import net.dv8tion.jda.api.entities.Member;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.chat.BaseComponent;
@@ -14,7 +14,7 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 import java.util.UUID;
 
-public class DiscordCommand extends CommandUtil {
+public class DiscordCommand extends BungeeCommand {
 
     public DiscordCommand(){
         super("discord");

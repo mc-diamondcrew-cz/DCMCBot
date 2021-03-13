@@ -13,6 +13,7 @@ public class JDAReadyListener extends ListenerAdapter {
     }
 
     public void onReady(@NotNull ReadyEvent event){
+        System.out.println("DCMCBOT > Enabled");
         dcmcBot.setGuild(CfgSettings.guildId);
         dcmcBot.setupConfigs();
         dcmcBot.setupDatabase();

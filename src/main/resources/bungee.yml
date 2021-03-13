@@ -1,5 +1,5 @@
 name: DCMCBot
-version: 1.0
+version: ${project.version}
 author: 9hx
 main: me.pljr.dcmcbot.DCMCBot
 depends: [PLJRApi-Bungee]

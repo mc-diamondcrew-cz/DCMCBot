@@ -13,6 +13,15 @@ settings:
   guild-id: 632926023637401630 #-> ID of the Guild, the bot is in.
   admin-role: 752802374979944518 #-> Admin Role ID
 
+vote:
+  response:
+    - "§8╔════════ §6VOTE §8════════╗"
+    - "§8║"
+    - "§8╠═<click:open_url:{url1}>§eCraftList &7Klik</click>"
+    - "§8╠═<click:open_url:{url2}>§eCzechCraft &7Klik</click>"
+    - "§8║"
+    - "§8╚════════ §6VOTE §8════════╝"
+
 # ticket settings
 tickets:
   open-category: 752811718379307092 # ID of the category for opened tickets.

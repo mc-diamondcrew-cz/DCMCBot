@@ -4,7 +4,7 @@ import me.pljr.dcmcbot.DCMCBot;
 import me.pljr.dcmcbot.managers.DCAccountManager;
 import me.pljr.dcmcbot.managers.TicketManager;
 import me.pljr.dcmcbot.objects.Ticket;
-import me.pljr.pljrapibungee.utils.CommandUtil;
+import me.pljr.pljrapibungee.commands.BungeeCommand;
 import net.dv8tion.jda.api.entities.Member;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.chat.BaseComponent;
@@ -16,7 +16,7 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 import java.util.UUID;
 
-public class TicketCommand extends CommandUtil {
+public class TicketCommand extends BungeeCommand {
 
     public TicketCommand(){
         super("ticket");
