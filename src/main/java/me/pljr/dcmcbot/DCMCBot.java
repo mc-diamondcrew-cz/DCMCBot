@@ -1,5 +1,6 @@
 package me.pljr.dcmcbot;
 
+import me.pljr.dcmcbot.commands.bungeecord.BuyCommand;
 import me.pljr.dcmcbot.commands.bungeecord.DiscordCommand;
 import me.pljr.dcmcbot.commands.bungeecord.TicketCommand;
 import me.pljr.dcmcbot.commands.bungeecord.VoteCommand;
@@ -106,6 +107,7 @@ public class DCMCBot extends Plugin {
         new DiscordCommand().registerCommand(this);
         new TicketCommand().registerCommand(this);
         new VoteCommand(configManager).registerCommand(this);
+        new BuyCommand(configManager).registerCommand(this);
 
         // Discord
         new ClearCommand("clear", guild.getRoleById(CfgSettings.adminRole)).registerCommand(jda);

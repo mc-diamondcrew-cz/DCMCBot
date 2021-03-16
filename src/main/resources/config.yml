@@ -13,6 +13,8 @@ settings:
   guild-id: 632926023637401630 #-> ID of the Guild, the bot is in.
   admin-role: 752802374979944518 #-> Admin Role ID
 
+buy: "&eDoplňky a vylepšení zakoupíte na &b<click:open_url:http://store.diamondcrew.cz>store.diamondcrew.cz</click>"
+
 vote:
   response:
     - "§8╔════════ §6VOTE §8════════╗"
